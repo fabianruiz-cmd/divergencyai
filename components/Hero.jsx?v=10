@@ -1,0 +1,48 @@
+// components/Hero.jsx — centrado, video loop
+const { useRef: useRefH, useEffect: useEffectH } = React;
+
+function Hero() {
+  const videoRef = useRefH(null);
+  useEffectH(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    const tryPlay = () => {
+      const p = v.play();
+      if (p && p.catch) p.catch(() => {});
+    };
+    tryPlay();
+    v.addEventListener("loadeddata", tryPlay);
+    v.addEventListener("canplay", tryPlay);
+    return () => {
+      v.removeEventListener("loadeddata", tryPlay);
+      v.removeEventListener("canplay", tryPlay);
+    };
+  }, []);
+
+  return (
+    <section className="hero">
+      <video
+        ref={videoRef}
+        className="hero__video"
+        src="assets/banner-loop.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto" />
+      
+      <div className="hero__video-overlay" />
+
+      <div className="hero__eyebrow">
+        IA que actúa, no promete
+      </div>
+      <h1 className="hero__title">
+        Soluciones de <em>inteligencia artificial</em> que automatizan tu negocio.
+      </h1>
+      <p className="hero__subtitle" style={{ margin: "0px 645.5px 0px 692.5px", height: "122px", borderWidth: "0px", borderStyle: "solid", borderRadius: "0px", width: "710px" }}>
+        Diseñamos pruebas de medición, agentes y plataformas que resuelven problemas concretos. Hecho para PYMEs, equipos y organizaciones que quieren resultados medibles desde el primer mes.
+      </p>
+    </section>);
+
+}
+window.Hero = Hero;

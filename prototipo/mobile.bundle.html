@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Divergency AI · Móvil</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="../colors_and_type.css?v=27">
+<link rel="stylesheet" href="mobile.css?v=27">
+
+<!-- Resources referenced as strings in JS — must be lifted for offline bundling -->
+<meta name="ext-resource-dependency" content="assets/logo-dark.png" data-resource-id="logoDark">
+<meta name="ext-resource-dependency" content="assets/logo-white.png" data-resource-id="logoWhite">
+<meta name="ext-resource-dependency" content="assets/banner-loop.mp4" data-resource-id="videoDark">
+<meta name="ext-resource-dependency" content="assets/white-background.mp4" data-resource-id="videoLight">
+<meta name="ext-resource-dependency" content="assets/products/emprendimiento.png" data-resource-id="prod_emprendimiento">
+<meta name="ext-resource-dependency" content="assets/products/vocacional.png" data-resource-id="prod_vocacional">
+<meta name="ext-resource-dependency" content="assets/products/habilidades-blandas.png" data-resource-id="prod_habilidades_blandas">
+<meta name="ext-resource-dependency" content="assets/products/ajuste-organizacional.png" data-resource-id="prod_ajuste_organizacional">
+<meta name="ext-resource-dependency" content="assets/products/ventas-b2b.png" data-resource-id="prod_ventas_b2b">
+<meta name="ext-resource-dependency" content="assets/products/consultoria-empresarial.jpg" data-resource-id="prod_consultoria_empresarial">
+<meta name="ext-resource-dependency" content="assets/products/innovacion.jpg" data-resource-id="prod_innovacion">
+<meta name="ext-resource-dependency" content="assets/products/bang.jpg" data-resource-id="prod_bang">
+<meta name="ext-resource-dependency" content="assets/products/tutorias-equipos.jpg" data-resource-id="prod_tutorias_equipos">
+<meta name="ext-resource-dependency" content="assets/products/agentes-ia.jpg" data-resource-id="prod_agentes_ia">
+<meta name="ext-resource-dependency" content="assets/products/whatsapp.png" data-resource-id="prod_whatsapp">
+<meta name="ext-resource-dependency" content="assets/products/web-ia.jpg" data-resource-id="prod_web_ia">
+<meta name="ext-resource-dependency" content="assets/products/dashboard.jpg" data-resource-id="prod_dashboard">
+<meta name="ext-resource-dependency" content="assets/products/armonia.jpg" data-resource-id="prod_armonia">
+<meta name="ext-resource-dependency" content="assets/products/diagnostica.jpg" data-resource-id="prod_diagnostica">
+<meta name="ext-resource-dependency" content="assets/products/pulse.jpg" data-resource-id="prod_pulse">
+<meta name="ext-resource-dependency" content="assets/products/bottotec.jpg" data-resource-id="prod_bottotec">
+<meta name="ext-resource-dependency" content="assets/products/juridico.jpg" data-resource-id="prod_juridico">
+<meta name="ext-resource-dependency" content="assets/products/turo.jpg" data-resource-id="prod_turo">
+<meta name="ext-resource-dependency" content="assets/thumb-1.jpg" data-resource-id="thumb1">
+<meta name="ext-resource-dependency" content="assets/thumb-2.jpg" data-resource-id="thumb2">
+<meta name="ext-resource-dependency" content="assets/thumb-3.jpg" data-resource-id="thumb3">
+<meta name="ext-resource-dependency" content="assets/thumb-4.jpg" data-resource-id="thumb4">
+
+<!-- Splash thumbnail shown while the bundle unpacks + as no-JS fallback -->
+<template id="__bundler_thumbnail" data-bg-color="#000000">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#000000"/>
+    <g transform="translate(600 400)">
+      <circle r="180" fill="none" stroke="#22D3EE" stroke-width="3" opacity="0.25"/>
+      <circle r="120" fill="none" stroke="#22D3EE" stroke-width="3" opacity="0.5"/>
+      <circle r="60" fill="#22D3EE"/>
+      <text y="240" font-family="system-ui, sans-serif" font-size="40" font-weight="700" text-anchor="middle" fill="#FFFFFF" letter-spacing="-1">Divergency AI</text>
+      <text y="290" font-family="ui-monospace, monospace" font-size="18" text-anchor="middle" fill="#22D3EE" letter-spacing="3">CARGANDO…</text>
+    </g>
+  </svg>
+</template>
+
+<script>
+try {
+  var t = localStorage.getItem("dvg-theme");
+  if (t) document.documentElement.setAttribute("data-theme", t);
+} catch (e) {}
+</script>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="data/portfolio.bundle.js"></script>
+<script type="text/babel" src="mobile-app.bundle.jsx"></script>
+</body>
+</html>

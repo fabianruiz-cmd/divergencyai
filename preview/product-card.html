@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="UTF-8"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>html,body{margin:0;padding:0;background:var(--bg-void);font-family:var(--font-body)}
+.wrap{padding:24px}
+.card{border-radius:32px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(40px);padding:32px;position:relative;overflow:hidden}
+.card::after{content:"";position:absolute;inset:0;border-radius:32px;background:linear-gradient(rgba(2,243,254,.12) 0%, rgba(2,243,254,0) 50%, rgba(29,25,171,.12) 100%);pointer-events:none}
+.tile{width:56px;height:56px;border-radius:16px;background:rgba(29,25,171,.25);border:1px solid rgba(2,243,254,.25);box-shadow:0 0 15px rgba(2,243,254,.25);display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative;z-index:1}
+.tile img{width:22px;height:22px;filter:brightness(0) saturate(100%) invert(84%) sepia(78%) saturate(6000%) hue-rotate(155deg) brightness(105%) contrast(101%)}
+.h{color:#fff;font-family:var(--font-body);font-weight:800;font-size:28px;line-height:1.1;letter-spacing:-.01em;margin-bottom:6px;position:relative;z-index:1}
+.sub{color:#02F3FE;font-family:var(--font-body);font-weight:600;font-size:16px;margin-bottom:10px;position:relative;z-index:1}
+.b{color:#CBD5E1;font-family:var(--font-body);font-weight:400;font-size:14px;line-height:1.6;position:relative;z-index:1;margin:0}
+</style></head><body><div class="wrap">
+  <div class="card">
+    <div class="tile"><img src="../assets/icons/brain.svg" alt=""/></div>
+    <div class="h">SapioLab</div>
+    <div class="sub">El cerebro de su empresa</div>
+    <p class="b">Diagnóstico de talento con datos reales. Psicometría potenciada con IA.</p>
+  </div>
+</div></body></html>

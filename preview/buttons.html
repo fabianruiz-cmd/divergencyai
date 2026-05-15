@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="UTF-8"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>html,body{margin:0;padding:0;background:var(--bg-void);font-family:var(--font-body)}
+.wrap{display:flex;flex-direction:column;gap:16px;padding:24px;align-items:flex-start}
+.btn{border-radius:9999px;border:0;cursor:pointer;font-family:var(--font-body);display:inline-flex;align-items:center;gap:8px;transition:box-shadow .2s,transform .15s}
+.btn--primary{background:#02F3FE;color:#001B24;font-weight:700;font-size:14px;padding:12px 28px;letter-spacing:.02em}
+.btn--primary:hover{box-shadow:0 0 24px rgba(2,243,254,.4)}
+.btn--lg{padding:20px 40px;font-size:16px;font-weight:700}
+.btn--ghost{background:rgba(16,28,122,.5);color:#fff;border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(12px);font-weight:600;font-size:14px;padding:12px 28px}
+.btn--ghost:hover{background:rgba(16,28,122,.8)}
+.link{color:#02F3FE;font-weight:700;font-size:14px;display:inline-flex;gap:8px;align-items:center;text-decoration:none;font-family:var(--font-body)}
+.link:hover{opacity:.85}
+</style></head><body><div class="wrap">
+  <button class="btn btn--primary">Agendar demo</button>
+  <button class="btn btn--primary btn--lg">Comenzar ahora</button>
+  <button class="btn btn--ghost">Explorar planes</button>
+  <a class="link" href="#">Ver en Marketplace →</a>
+</div></body></html>

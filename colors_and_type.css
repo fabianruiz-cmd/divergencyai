@@ -1,0 +1,329 @@
+/* ─────────────────────────────────────────────────────────────
+   Divergency AI · Design System Foundations
+   Tokens for color, type, spacing, radii, shadows, motion.
+   ───────────────────────────────────────────────────────────── */
+
+/* ── Fonts ────────────────────────────────────────────────────
+   Brand font: Montserrat (full 9‑weight family, italics included),
+   delivered as .ttf under /fonts. Montserrat IS the brand face per
+   the user's upload, so it's used for both display and body.
+   JetBrains Mono stays on Google Fonts for code/tabular use. */
+@font-face { font-family:'Montserrat'; font-weight:100; font-style:normal;  src:url('fonts/Montserrat-Thin.ttf')            format('truetype'); font-display:swap; }
+@font-face { font-family:'Montserrat'; font-weight:100; font-style:italic;  src:url('fonts/Montserrat-ThinItalic.ttf')      format('truetype'); font-display:swap; }
+@font-face { font-family:'Montserrat'; font-weight:200; font-style:normal;  src:url('fonts/Montserrat-ExtraLight.ttf')      format('truetype'); font-display:swap; }
+@font-face { font-family:'Montserrat'; font-weight:200; font-style:italic;  src:url('fonts/Montserrat-ExtraLightItalic.ttf')format('truetype'); font-display:swap; }
+@font-face { font-family:'Montserrat'; font-weight:300; font-style:normal;  src:url('fonts/Montserrat-Light.ttf')           format('truetype'); font-display:swap; }
+@font-face { font-family:'Montserrat'; font-weight:300; font-style:italic;  src:url('fonts/Montserrat-LightItalic.ttf')     format('truetype'); font-display:swap; }
+@font-face { font-family:'Montserrat'; font-weight:400; font-style:normal;  src:url('fonts/Montserrat-Regular.ttf')         format('truetype'); font-display:swap; }
+@font-face { font-family:'Montserrat'; font-weight:400; font-style:italic;  src:url('fonts/Montserrat-Italic.ttf')          format('truetype'); font-display:swap; }
+@font-face { font-family:'Montserrat'; font-weight:500; font-style:normal;  src:url('fonts/Montserrat-Medium.ttf')          format('truetype'); font-display:swap; }
+@font-face { font-family:'Montserrat'; font-weight:500; font-style:italic;  src:url('fonts/Montserrat-MediumItalic.ttf')    format('truetype'); font-display:swap; }
+@font-face { font-family:'Montserrat'; font-weight:600; font-style:normal;  src:url('fonts/Montserrat-SemiBold.ttf')        format('truetype'); font-display:swap; }
+@font-face { font-family:'Montserrat'; font-weight:600; font-style:italic;  src:url('fonts/Montserrat-SemiBoldItalic.ttf')  format('truetype'); font-display:swap; }
+@font-face { font-family:'Montserrat'; font-weight:700; font-style:normal;  src:url('fonts/Montserrat-Bold.ttf')            format('truetype'); font-display:swap; }
+@font-face { font-family:'Montserrat'; font-weight:700; font-style:italic;  src:url('fonts/Montserrat-BoldItalic.ttf')      format('truetype'); font-display:swap; }
+@font-face { font-family:'Montserrat'; font-weight:800; font-style:normal;  src:url('fonts/Montserrat-ExtraBold.ttf')       format('truetype'); font-display:swap; }
+@font-face { font-family:'Montserrat'; font-weight:800; font-style:italic;  src:url('fonts/Montserrat-ExtraBoldItalic.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'Montserrat'; font-weight:900; font-style:normal;  src:url('fonts/Montserrat-Black.ttf')           format('truetype'); font-display:swap; }
+@font-face { font-family:'Montserrat'; font-weight:900; font-style:italic;  src:url('fonts/Montserrat-BlackItalic.ttf')     format('truetype'); font-display:swap; }
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ── Brand core (official — from brand manual Colores.png) ── */
+  --brand-void:        #03052C;    /* deepest navy — page bg */
+  --brand-deep-blue:   #010D73;    /* mid navy — section fills */
+  --brand-indigo:      #1D19AB;    /* electric indigo — accent bars, press states */
+  --brand-cyan:        #02F3FE;    /* signature cyan — glows, CTAs, eyebrows */
+
+  /* Derived / supporting */
+  --brand-cyan-glow:   rgba(2, 243, 254, 1);
+  --brand-cyan-soft:   rgba(2, 243, 254, 0.20);
+  --brand-cyan-border: rgba(2, 243, 254, 0.30);
+  --brand-cyan-ink:    #001B24;      /* foreground on cyan */
+  --brand-indigo-soft: rgba(29, 25, 171, 0.35);
+
+  /* ── Deep-space backgrounds (the dark canvas) ───────────── */
+  --bg-void:           var(--brand-void);           /* #03052C */
+  --bg-deep:           var(--brand-deep-blue);      /* #010D73 */
+  --bg-panel:          #0C1843;                     /* cards / overlays */
+  --bg-panel-2:        #101C47;                     /* hero cards */
+  --bg-panel-3:        #1C2752;                     /* tonal pill bg */
+  --bg-surface-raised: #071220;                     /* featured surface */
+  --bg-charcoal:       rgb(21, 26, 33);
+  --bg-slate:          rgb(32, 38, 47);
+
+  /* Translucent glass layers */
+  --glass-hairline:    rgba(255, 255, 255, 0.05);
+  --glass-border:      rgba(255, 255, 255, 0.10);
+  --glass-fill:        rgba(255, 255, 255, 0.05);
+  --glass-fill-strong: rgba(255, 255, 255, 0.10);
+
+  /* Off‑white — cool tinted, never pure #FFFFFF */
+  --bg-light:          #F3F6FF;
+
+  /* Deep teals used behind glowing icons */
+  --teal-900: rgb(22, 78, 99);
+  --teal-800: rgb(9, 100, 104);
+
+  /* ── Foreground (text) ──────────────────────────────────── */
+  --fg-primary:     rgb(255, 255, 255);    /* headings, key ui */
+  --fg-bright:      rgb(244, 255, 254);    /* hero display */
+  --fg-soft:        rgb(241, 243, 252);    /* subtle white */
+  --fg-body:        rgb(203, 213, 225);    /* body copy */
+  --fg-muted:       rgb(185, 202, 201);    /* paragraphs, lead */
+  --fg-subtle:      rgb(168, 171, 179);    /* secondary */
+  --fg-quiet:       rgb(152, 152, 152);    /* fine print */
+  --fg-slate:       rgb(148, 163, 184);    /* fine print 2 */
+  --fg-disabled:    rgb(131, 148, 147);
+  --fg-divider:     rgb(68, 72, 79);
+
+  /* Light-mode surface text (used on rare light sections) */
+  --fg-invert-ink:  rgb(0, 55, 55);
+
+  /* ── Semantic ───────────────────────────────────────────── */
+  --color-accent:        var(--brand-cyan);
+  --color-accent-ink:    var(--brand-cyan-ink);
+  --color-success:       rgb(34, 211, 190);
+  --color-warning:       rgb(251, 191, 36);
+  --color-danger:        rgb(248, 113, 113);
+  --color-info:          var(--brand-cyan);
+
+  /* ── Glows (the signature effect) ───────────────────────── */
+  --glow-cyan-soft:   0 0 15px rgba(0, 249, 249, 0.20);
+  --glow-cyan:        0 0 30px rgba(0, 249, 249, 0.30);
+  --glow-cyan-strong: 0 0 50px rgba(0, 249, 249, 0.50);
+  --glow-cyan-nav:    0 0 30px rgba(0, 249, 249, 0.05);
+
+  /* ── Shadows ─────────────────────────────────────────────── */
+  --shadow-xs: 0 1px 2px   rgba(0, 0, 0, 0.25);
+  --shadow-sm: 0 2px 8px   rgba(0, 0, 0, 0.20);
+  --shadow-md: 0 8px 24px  rgba(0, 0, 0, 0.30);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.45);
+  --shadow-drop: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+  /* ── Gradients ──────────────────────────────────────────── */
+  --grad-cyan-glow:    radial-gradient(circle, rgba(0,249,249,0.6) 0%, rgba(0,249,249,0.1) 40%, rgba(0,249,249,0) 75%);
+  --grad-card-sheen:   linear-gradient(rgba(0,249,249,0.20) 0%, rgba(0,249,249,0) 50%, rgba(168,201,245,0.10) 100%);
+  --grad-divider:      linear-gradient(rgba(6,182,212,0) 0%, rgba(6,182,212,0.3) 50%, rgba(6,182,212,0) 100%);
+  --grad-top-light:    linear-gradient(rgba(34,211,238,0) 0%, rgba(34,211,238,1) 50%, rgba(34,211,238,0) 100%);
+  --grad-trusted:      linear-gradient(rgba(3,15,59,0) 0%, rgba(0,77,133,1) 50%, rgba(3,15,59,0) 100%);
+
+  /* ── Typography: families ───────────────────────────────── */
+  --font-display: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  --font-body:    'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  --font-ui:      'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Liberation Mono', ui-monospace, monospace;
+
+  /* ── Typography: scale (px for pixel-parity with Figma) ── */
+  --text-xs:    10px;
+  --text-sm:    12px;
+  --text-base:  14px;
+  --text-md:    16px;
+  --text-lg:    18px;
+  --text-xl:    20px;
+  --text-2xl:   24px;
+  --text-3xl:   30px;
+  --text-4xl:   36px;
+  --text-5xl:   48px;
+  --text-6xl:   57px;
+  --text-display: 60px;
+  --text-display-xl: 72px;
+
+  --leading-tight:  1.1;
+  --leading-snug:   1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+
+  --tracking-tight: -0.015em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.025em;
+  --tracking-eyebrow: 0.2em;      /* uppercase eyebrow labels */
+  --tracking-eyebrow-xl: 0.4em;   /* PLANES Y PRECIOS style  */
+
+  /* ── Spacing (strict 8pt base) ───────────────────────────
+     Brand rule from the user: every spacing token is a
+     multiple of 8. Token names reflect the multiplier. */
+  --space-0:   0;
+  --space-1:   8px;    /* 1× */
+  --space-2:   16px;   /* 2× */
+  --space-3:   24px;   /* 3× */
+  --space-4:   32px;   /* 4× */
+  --space-5:   40px;   /* 5× */
+  --space-6:   48px;   /* 6× */
+  --space-8:   64px;   /* 8× */
+  --space-10:  80px;   /* 10× */
+  --space-12:  96px;   /* 12× */
+  --space-16:  128px;  /* 16× */
+  --space-20:  160px;  /* 20× */
+
+  /* ── Radii (base 8 — pill as escape hatch) ──────────────── */
+  --radius-sm:  8px;
+  --radius-md:  16px;     /* icon tiles */
+  --radius-lg:  24px;
+  --radius-xl:  32px;     /* feature cards */
+  --radius-2xl: 40px;     /* pricing cards */
+  --radius-pill: 9999px;
+
+  /* ── Blurs ─────────────────────────────────────────────── */
+  --blur-nav: 24px;
+  --blur-card: 16px;
+  --blur-heavy: 40px;
+
+  /* ── Motion ─────────────────────────────────────────────── */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 120ms;
+  --dur-base: 240ms;
+  --dur-slow: 480ms;
+
+  /* ── Layout ─────────────────────────────────────────────── */
+  --container-max: 1280px;
+  --container-gutter: 64px;
+  --nav-height: 80px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Semantic element tokens (use these on components)
+   ───────────────────────────────────────────────────────────── */
+:root {
+  --eyebrow-color:     var(--brand-cyan);
+  --eyebrow-size:      var(--text-xs);
+  --eyebrow-weight:    700;
+  --eyebrow-tracking:  var(--tracking-eyebrow-xl);
+
+  --h1-font:   var(--font-display);
+  --h1-size:   var(--text-display-xl);      /* 72 */
+  --h1-weight: 700;
+  --h1-lh:     1;
+
+  --h2-font:   var(--font-display);
+  --h2-size:   var(--text-display);         /* 60 */
+  --h2-weight: 700;
+  --h2-lh:     1;
+
+  --h3-font:   var(--font-display);
+  --h3-size:   var(--text-5xl);             /* 48 */
+  --h3-weight: 700;
+  --h3-lh:     1;
+
+  --h4-font:   var(--font-display);
+  --h4-size:   var(--text-4xl);             /* 36 */
+  --h4-weight: 700;
+  --h4-lh:     1.1;
+
+  --h5-font:   var(--font-display);
+  --h5-size:   var(--text-3xl);             /* 30 */
+  --h5-weight: 700;
+  --h5-lh:     1.2;
+
+  --h6-font:   var(--font-display);
+  --h6-size:   var(--text-xl);              /* 20 */
+  --h6-weight: 700;
+  --h6-lh:     1.4;
+
+  --lead-size:   var(--text-lg);            /* 18 */
+  --lead-weight: 300;
+  --lead-lh:     1.55;
+  --lead-color:  var(--fg-muted);
+
+  --body-size:   var(--text-md);            /* 16 */
+  --body-weight: 300;
+  --body-lh:     1.625;
+  --body-color:  var(--fg-slate);
+
+  --small-size:  var(--text-base);
+  --small-color: var(--fg-body);
+
+  --label-size:  var(--text-sm);
+  --label-weight: 500;
+  --label-color: var(--fg-subtle);
+
+  --quote-font:   var(--font-display);
+  --quote-size:   var(--text-2xl);
+  --quote-weight: 700;
+  --quote-color:  var(--brand-cyan);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Base element styles (opt-in: add class `dv` on root)
+   ───────────────────────────────────────────────────────────── */
+.dv, .dv-root {
+  color: var(--fg-body);
+  background: var(--bg-void);
+  font-family: var(--font-body);
+  font-size: var(--body-size);
+  line-height: var(--body-lh);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.dv h1, .dv .h1 {
+  font-family: var(--h1-font); font-size: var(--h1-size);
+  font-weight: var(--h1-weight); line-height: var(--h1-lh);
+  color: var(--fg-primary); letter-spacing: var(--tracking-tight);
+  margin: 0;
+}
+.dv h2, .dv .h2 {
+  font-family: var(--h2-font); font-size: var(--h2-size);
+  font-weight: var(--h2-weight); line-height: var(--h2-lh);
+  color: var(--fg-bright); margin: 0;
+}
+.dv h3, .dv .h3 {
+  font-family: var(--h3-font); font-size: var(--h3-size);
+  font-weight: var(--h3-weight); line-height: var(--h3-lh);
+  color: var(--fg-primary); margin: 0;
+}
+.dv h4, .dv .h4 {
+  font-family: var(--h4-font); font-size: var(--h4-size);
+  font-weight: var(--h4-weight); line-height: var(--h4-lh);
+  color: var(--fg-primary); margin: 0;
+}
+.dv h5, .dv .h5 {
+  font-family: var(--h5-font); font-size: var(--h5-size);
+  font-weight: var(--h5-weight); line-height: var(--h5-lh);
+  color: var(--fg-primary); margin: 0;
+}
+.dv h6, .dv .h6 {
+  font-family: var(--h6-font); font-size: var(--h6-size);
+  font-weight: var(--h6-weight); line-height: var(--h6-lh);
+  color: var(--fg-primary); margin: 0;
+}
+
+.dv .eyebrow, .dv [data-eyebrow] {
+  font-family: var(--font-body);
+  font-weight: var(--eyebrow-weight);
+  font-size: var(--eyebrow-size);
+  letter-spacing: var(--eyebrow-tracking);
+  text-transform: uppercase;
+  color: var(--eyebrow-color);
+}
+
+.dv .lead, .dv p.lead {
+  font-size: var(--lead-size); font-weight: var(--lead-weight);
+  line-height: var(--lead-lh); color: var(--lead-color);
+}
+
+.dv p { margin: 0 0 1em; color: var(--body-color); }
+
+.dv code, .dv kbd, .dv pre {
+  font-family: var(--font-mono);
+  font-size: 0.925em;
+}
+
+.dv blockquote {
+  font-family: var(--quote-font);
+  font-size: var(--quote-size);
+  font-weight: var(--quote-weight);
+  color: var(--quote-color);
+  border-left: 1px solid var(--brand-cyan);
+  padding: 0 var(--space-6);
+  margin: 0;
+}
+
+.dv a {
+  color: var(--brand-cyan);
+  text-decoration: none;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.dv a:hover { opacity: 0.85; }

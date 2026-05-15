@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Quiénes somos · Divergency AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="../colors_and_type.css?v=25">
+<link rel="stylesheet" href="styles.css?v=25">
+
+<script>
+try {
+  var t = localStorage.getItem("dvg-theme");
+  if (t) document.documentElement.setAttribute("data-theme", t);
+} catch (e) {}
+</script>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="mobile-redirect.js?v=25"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="data/portfolio.js?v=25"></script>
+
+<script type="text/babel" src="components/Navbar.jsx?v=25"></script>
+<script type="text/babel" src="components/Footer.jsx?v=25"></script>
+
+<script type="text/babel">
+function QuienesSomos() {
+  const photos = ["assets/team-1.png", "assets/team-2.png", "assets/team-3.png", "assets/team-4.png"];
+  const [active, setActive] = React.useState(0);
+  React.useEffect(() => {
+    const id = setInterval(() => setActive(a => (a + 1) % photos.length), 4200);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <>
+      <Navbar activePage="quienes" />
+
+      <section className="quienes">
+        <div className="quienes__header">
+          <div className="quienes__eyebrow">Quiénes somos</div>
+          <h1 className="quienes__title">
+            IA aplicada, hecha por <em>personas</em>.
+          </h1>
+          <p className="quienes__lede">
+            Un equipo pequeño que diseña inteligencia artificial que se queda funcionando.
+          </p>
+        </div>
+
+        <div className="team-hero">
+          <div className="team-hero__stage">
+            {photos.map((src, i) => (
+              <img
+                key={src}
+                src={src}
+                alt=""
+                className="team-hero__img"
+                data-active={i === active}
+                aria-hidden={i !== active}
+              />
+            ))}
+          </div>
+          <div className="team-hero__thumbs">
+            {photos.map((src, i) => (
+              <button
+                key={src}
+                className="team-hero__thumb"
+                data-active={i === active}
+                onClick={() => setActive(i)}
+                aria-label={`Foto ${i + 1}`}
+              >
+                <img src={src} alt="" />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="quienes__pillars">
+          <div className="pillar">
+            <div className="pillar__num">01</div>
+            <h3 className="pillar__title">IA aplicada, no aspiracional.</h3>
+            <p className="pillar__body pillar__body--oneline">Sistemas que se quedan corriendo después del lanzamiento.</p>
+          </div>
+          <div className="pillar">
+            <div className="pillar__num">02</div>
+            <h3 className="pillar__title">Contexto antes que modelo.</h3>
+            <p className="pillar__body pillar__body--oneline">Entender tu operación, lenguaje y cliente primero.</p>
+          </div>
+          <div className="pillar">
+            <div className="pillar__num">03</div>
+            <h3 className="pillar__title">Medimos lo que prometemos.</h3>
+            <p className="pillar__body pillar__body--oneline">Si no es medible, no lo entregamos.</p>
+          </div>
+        </div>
+
+        <div className="quienes__numbers">
+          <div className="quienes-num">
+            <span className="quienes-num__val">20+</span>
+            <span className="quienes-num__label">productos activos</span>
+          </div>
+          <div className="quienes-num">
+            <span className="quienes-num__val">7</span>
+            <span className="quienes-num__label">pruebas de medición</span>
+          </div>
+          <div className="quienes-num">
+            <span className="quienes-num__val">24/7</span>
+            <span className="quienes-num__label">agentes operando</span>
+          </div>
+          <div className="quienes-num">
+            <span className="quienes-num__val">+5 países</span>
+            <span className="quienes-num__label">usuarios activos</span>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<QuienesSomos />);
+</script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Lo que hacemos · Divergency AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="../colors_and_type.css?v=28">
+<link rel="stylesheet" href="styles.css?v=28">
+<link rel="stylesheet" href="mobile.css?v=28">
+
+<script>
+try {
+  var t = localStorage.getItem("dvg-theme");
+  if (t) document.documentElement.setAttribute("data-theme", t);
+} catch (e) {}
+</script>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script>window.__MOBILE_PAGE__ = true;</script>
+<script src="data/portfolio.js?v=28"></script>
+
+<script type="text/babel" src="components/Navbar.jsx?v=28"></script>
+<script type="text/babel" src="components/Footer.jsx?v=28"></script>
+<script type="text/babel" src="mobile-app.jsx?v=28"></script>
+
+<script type="text/babel">
+const { useState, useMemo } = React;
+
+const TIPOS = ["todos", "producto", "servicio", "evento", "contenido"];
+
+function ListaPage() {
+  const params = new URLSearchParams(window.location.search);
+  const initialCat = params.get("cat") || "todos";
+  const initialTipo = params.get("tipo") || "todos";
+
+  const [cat, setCat] = useState(initialCat);
+  const [tipo, setTipo] = useState(initialTipo);
+
+  // Detección móvil: por param ?m=1 (forzado) o viewport ≤760px
+  const isMobile = params.get('m') === '1' ||
+    (typeof window !== 'undefined' && window.matchMedia('(max-width: 760px)').matches);
+  const NavComp = isMobile ? window.MobileNav : Navbar;
+  const FooterComp = isMobile ? window.MobileFooter : Footer;
+  const mSuffix = isMobile ? '&m=1' : '';
+
+  const products = window.PORTFOLIO;
+  const cats = window.PORTFOLIO_CATEGORIES;
+
+  const filtered = useMemo(() => {
+    return products.filter(p => {
+      if (cat !== "todos" && p.categoria !== cat) return false;
+      if (tipo !== "todos" && p.tipo !== tipo) return false;
+      return true;
+    });
+  }, [cat, tipo]);
+
+  const titulo = cat === "todos" ? "Todo nuestro portafolio" : cat;
+
+  return (
+    <div className={isMobile ? 'm-frame' : ''}>
+      <NavComp activePage="lista" />
+
+      <section className={isMobile ? "m-lista" : "lista"}>
+        <div className={isMobile ? "m-lista__head" : "lista__head"}>
+          <div>
+            <div className="section__label">Lo que hacemos</div>
+            <h1 className={isMobile ? "m-lista__title" : "lista__title"}>{titulo}</h1>
+            <div className={isMobile ? "m-lista__meta" : "lista__meta"}>
+              {filtered.length} {filtered.length === 1 ? "ítem" : "ítems"}
+              {tipo !== "todos" && ` · ${tipo}s`}
+            </div>
+          </div>
+        </div>
+
+        {/* Categoría */}
+        <div className={isMobile ? "m-lista__filters" : "lista__filters"}>
+          <span className={isMobile ? "m-lista__filter-label" : ""} style={isMobile ? {} : {
+            fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '.14em',
+            textTransform: 'uppercase', color: 'var(--fg-60)', marginRight: 8,
+            alignSelf: 'center'
+          }}>Categoría</span>
+          <div className={isMobile ? "m-lista__chips" : ""} style={isMobile ? {} : { display: 'contents' }}>
+            {cats.map(c => (
+              <button
+                key={c.id}
+                className="chip"
+                aria-pressed={cat === c.id}
+                onClick={() => setCat(c.id)}
+              >
+                {c.nombre}
+                <span className="chip__count">{c.count}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Tipo */}
+        <div className={isMobile ? "m-lista__filters" : "lista__filters"}>
+          <span className={isMobile ? "m-lista__filter-label" : ""} style={isMobile ? {} : {
+            fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '.14em',
+            textTransform: 'uppercase', color: 'var(--fg-60)', marginRight: 8,
+            alignSelf: 'center'
+          }}>Tipo</span>
+          <div className={isMobile ? "m-lista__chips" : ""} style={isMobile ? {} : { display: 'contents' }}>
+            {TIPOS.map(t => {
+              const count = t === "todos"
+                ? products.length
+                : products.filter(p => p.tipo === t).length;
+              return (
+                <button
+                  key={t}
+                  className="chip"
+                  aria-pressed={tipo === t}
+                  onClick={() => setTipo(t)}
+                >
+                  {t}
+                  <span className="chip__count">{count}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {filtered.length === 0 ? (
+          <div className="lista__empty">No hay resultados con estos filtros</div>
+        ) : isMobile ? (
+          <div className="m-lista__grid">
+            {filtered.map(p => (
+              <a
+                key={p.id}
+                className="m-lista-card"
+                href={`producto.html?id=${p.id}${mSuffix}`}
+                style={{ '--card-color': p.color }}
+              >
+                <div className="m-lista-card__media">
+                  {p.image ? (
+                    <img src={p.image} alt="" loading="lazy" />
+                  ) : (
+                    <div className="m-lista-card__glyph">{p.nombre.charAt(0)}</div>
+                  )}
+                </div>
+                <div className="m-lista-card__body">
+                  <div className="m-lista-card__meta">
+                    <span className="m-lista-card__cat">{p.categoria}</span>
+                    {p.tipo && <span className={`tipo-badge tipo-badge--${p.tipo}`}>{p.tipo}</span>}
+                  </div>
+                  <h3 className="m-lista-card__name">{p.nombre}</h3>
+                  <p className="m-lista-card__blurb">{p.tagline || p.blurb}</p>
+                  <span className="m-lista-card__arrow">
+                    Ver producto
+                    <svg width="13" height="10" viewBox="0 0 14 10"><path d="M1 5h12M9 1l4 4-4 4" stroke="currentColor" strokeWidth="1.7" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        ) : (
+          <div className="lista__grid">
+            {filtered.map(p => (
+              <a key={p.id} className="lista-card" href={`producto.html?id=${p.id}`} style={{ '--hue': p.color }}>
+                <div className="lista-card__media">
+                  {p.image ? (
+                    <img src={p.image} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }}/>
+                  ) : (
+                    <div className="lista-card__glyph">{p.nombre.charAt(0)}</div>
+                  )}
+                  <div className="lista-card__badges">
+                    <span className="lista-card__cat">{p.categoria}</span>
+                    {p.tipo && <span className={`tipo-badge tipo-badge--${p.tipo}`}>{p.tipo}</span>}
+                  </div>
+                </div>
+                <div className="lista-card__body">
+                  <h3 className="lista-card__blurb">{p.blurb}</h3>
+                  <div className="lista-card__name">
+                    <span className="lista-card__name-dot" />
+                    {p.nombre}
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        )}
+      </section>
+
+      <FooterComp />
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<ListaPage />);
+</script>
+</body>
+</html>

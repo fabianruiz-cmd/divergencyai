@@ -1,0 +1,8 @@
+{
+  "name": "divergency-ai-web",
+  "version": "1.0.0",
+  "description": "Marketing website y design system para Divergency AI",
+  "scripts": {
+    "start": "npx http-server prototipo -p 3000"
+  }
+}

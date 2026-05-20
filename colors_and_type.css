@@ -29,6 +29,42 @@
 
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
 
+/* ─────────────────────────────────────────────────────────────
+   FONT SMOOTHING: Windows/Mac Compatibility Fix
+   Ensures consistent, smooth font rendering across all platforms
+   ───────────────────────────────────────────────────────────── */
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+  font-kerning: auto;
+  font-feature-settings: "kern" 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   END FONT SMOOTHING
+   ───────────────────────────────────────────────────────────── */
+
 :root {
   /* ── Brand core (official — from brand manual Colores.png) ── */
   --brand-void:        #03052C;    /* deepest navy — page bg */
@@ -228,7 +264,7 @@
   --lead-color:  var(--fg-muted);
 
   --body-size:   var(--text-md);            /* 16 */
-  --body-weight: 300;
+  --body-weight: 500;                       /* CHANGED FROM 300 TO 500 FOR BETTER WINDOWS RENDERING */
   --body-lh:     1.625;
   --body-color:  var(--fg-slate);
 
